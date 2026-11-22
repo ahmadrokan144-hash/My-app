@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <defs>
+    <linearGradient id="sharGrad" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="216" height="216" rx="52" fill="url(#sharGrad)"/>
+  <text x="120" y="116" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="52" letter-spacing="2">SHAR</text>
+  <rect x="64" y="134" width="112" height="36" rx="18" fill="#38bdf8"/>
+  <text x="120" y="159" text-anchor="middle" fill="#0f172a" font-family="Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="3">TV HD</text>
+</svg>

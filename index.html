@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- ١. ناونیشان و مێتا تاگەکانی SEO بۆ گۆگڵ -->
+    <title>کەناڵە جیهانییەکان - پەخشی ڕاستەوخۆی تەلەفزیۆن</title>
+    <meta name="description" content="ئەپڵیکەیشنی پێشکەوتووی سەیرکردنی کەناڵە جیهانییەکان و پەخشی ڕاستەوخۆی تەلەفزیۆن بە کوالێتی بەرز.">
+    <meta name="keywords" content="کەناڵە جیهانییەکان, تەلەفزیۆن, پەخشی ڕاستەوخۆ, تیڤی, live tv, global channels, world tv">
+    <meta name="robots" content="index, follow">
+
+    <!-- ٢. مێتا تاگی پشتڕاستکردنەوەی خاوەندارێتی گۆگڵ (پارێزراوە) -->
+    <meta name="google-site-verification" content="buHEP7oFsENKFZme67qQMTYIsMqlwdtOsWjEOaPKgF8" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="own+" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" type="image/png" href="/icon.png?v=12" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png?v=12" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=12" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=12" />
+    <link rel="manifest" href="/manifest.json?v=12" />
+    <link rel="preload" as="image" href="/assets/aistudio/key-logo-3d.png" />
+    <link rel="preload" as="font" type="font/woff" href="/fonts/Rabar_021.woff" crossorigin />
+    <script>
+      // Apply saved dark/light theme before first paint so splash screen never flashes the wrong color
+      (function () {
+        try {
+          var isDark = localStorage.getItem('quran_dark_mode') === 'true';
+          var bg = isDark ? '#0b0f19' : '#ffffff';
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light-theme');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light-theme');
+          }
+          document.documentElement.style.backgroundColor = bg;
+          var metaTheme = document.querySelector('meta[name="theme-color"]');
+          if (metaTheme) metaTheme.setAttribute('content', bg);
+        } catch (e) {}
+      })();
+      // Clear stale Cache Storage so live HLS streams never hit outdated caches
+      (function () {
+        try {
+          if ('caches' in window) {
+            caches.keys().then(function (keys) {
+              for (var j = 0; j < keys.length; j++) {
+                caches.delete(keys[j]);
+              }
+            }).catch(function () {});
+          }
+        } catch (e) {}
+      })();
+    </script>
+</head>
+<body class="bg-white dark:bg-[#0b0f19] text-slate-900 dark:text-white">
+
+    <!-- جێگرەوەی سەرەکی پڕۆژە (React App Root) -->
+    <div id="root"></div>
+
+    <!-- فایلی سەرەکی سکریپتی ڕیاکتەکەت لێرە لۆد دەبێت -->
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Prevent pinch-to-zoom on iOS
+      document.addEventListener('gesturestart', function (e) {
+        e.preventDefault();
+      });
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    </script>
+</body>
+</html>

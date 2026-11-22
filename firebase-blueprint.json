@@ -1,0 +1,196 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile document synchronized with Firebase Authentication",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 5,
+          "maxLength": 120,
+          "pattern": "^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,12}$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 30
+        },
+        "photoUrl": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "role": {
+          "type": "string",
+          "enum": ["customer", "staff", "admin", "owner"]
+        },
+        "authProvider": {
+          "type": "string",
+          "enum": ["password", "google"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "email", "displayName", "role", "authProvider", "createdAt", "updatedAt"]
+    },
+    "QueueTicket": {
+      "title": "QueueTicket",
+      "description": "Queue and history ticket record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "number": {
+          "type": "number"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "departmentId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "departmentNameKu": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "departmentNameEn": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "customerName": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "customerPhone": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["waiting", "called", "serving", "completed", "skipped"]
+        },
+        "counter": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "number"
+        },
+        "calledAt": {
+          "type": "number"
+        },
+        "completedAt": {
+          "type": "number"
+        }
+      },
+      "required": ["id", "number", "code", "departmentId", "userId", "status", "createdAt"]
+    },
+    "UserFavorite": {
+      "title": "UserFavorite",
+      "description": "User favorite channel record synced to Firebase account",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "userId", "createdAt"]
+    },
+    "UserSettings": {
+      "title": "UserSettings",
+      "description": "User appearance, language, blur, and notification preferences synced across devices",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "darkMode": {
+          "type": "boolean"
+        },
+        "lang": {
+          "type": "string",
+          "enum": ["ku", "en"]
+        },
+        "navBlur": {
+          "type": "number"
+        },
+        "notificationsEnabled": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "darkMode", "lang", "navBlur", "notificationsEnabled", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "User profiles indexed by Firebase Auth userId"
+    },
+    "/users/{userId}/favorites/{channelId}": {
+      "schema": {
+        "$ref": "#/entities/UserFavorite"
+      },
+      "description": "Favorite TV channels synchronized per user account"
+    },
+    "/users/{userId}/preferences/{prefId}": {
+      "schema": {
+        "$ref": "#/entities/UserSettings"
+      },
+      "description": "Synchronized user settings document (prefId = 'settings')"
+    },
+    "/tickets/{ticketId}": {
+      "schema": {
+        "$ref": "#/entities/QueueTicket"
+      },
+      "description": "Live queue and past ticket history owned by userId"
+    }
+  }
+}

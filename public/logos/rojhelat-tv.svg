@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Rojhelat TV Official Emblem: Dark Charcoal Play Triangle + Crimson R Ribbon -->
+  <g transform="translate(30, 35)">
+    <!-- Left Dark Charcoal Play Triangle -->
+    <path d="M45 45 L165 165 L45 285 Z" fill="#334155" />
+    <!-- Right Crimson R Ribbon -->
+    <path d="M75 30 L215 30 C275 30 310 68 310 120 C310 162 282 195 242 206 L305 295 L220 295 L162 212 L202 172 C222 172 238 154 238 125 C238 96 220 82 192 82 L127 82 Z" fill="#b91c1c" />
+  </g>
+</svg>

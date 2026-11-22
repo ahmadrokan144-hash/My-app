@@ -1,0 +1,222 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isVerified() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidChannelId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 64 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidEmail(email) {
+      return email is string
+        && email.size() >= 5
+        && email.size() <= 120
+        && email.matches('^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,12}$');
+    }
+
+    function isValidUserProfile(data, userId) {
+      return data.keys().hasAll(['id', 'email', 'displayName', 'role', 'authProvider', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'email', 'displayName', 'photoUrl', 'role', 'authProvider', 'createdAt', 'updatedAt'])
+        && data.id is string
+        && isValidId(data.id)
+        && data.id == userId
+        && data.id == request.auth.uid
+        && isValidEmail(data.email)
+        && data.displayName is string
+        && data.displayName.size() >= 3
+        && data.displayName.size() <= 30
+        && (!('photoUrl' in data) || (data.photoUrl is string && data.photoUrl.size() <= 500))
+        && data.role is string
+        && data.role in ['customer', 'staff', 'admin', 'owner']
+        && data.authProvider is string
+        && data.authProvider in ['password', 'google']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidUserFavorite(data, userId, channelId) {
+      return data.keys().hasAll(['id', 'userId', 'createdAt'])
+        && data.keys().hasOnly(['id', 'userId', 'createdAt'])
+        && isValidChannelId(data.id)
+        && data.id == channelId
+        && isValidId(data.userId)
+        && data.userId == userId
+        && data.userId == request.auth.uid
+        && data.createdAt is timestamp;
+    }
+
+    function isValidUserSettings(data, userId) {
+      return data.keys().hasAll(['userId', 'darkMode', 'lang', 'navBlur', 'notificationsEnabled', 'updatedAt'])
+        && data.keys().hasOnly(['userId', 'darkMode', 'lang', 'navBlur', 'notificationsEnabled', 'updatedAt'])
+        && isValidId(data.userId)
+        && data.userId == userId
+        && data.userId == request.auth.uid
+        && data.darkMode is bool
+        && data.lang is string
+        && data.lang in ['ku', 'en']
+        && data.navBlur is number
+        && data.navBlur >= 0
+        && data.navBlur <= 45
+        && data.notificationsEnabled is bool
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidQueueTicket(data, ticketId) {
+      return data.keys().hasAll(['id', 'number', 'code', 'departmentId', 'userId', 'status', 'createdAt'])
+        && data.keys().hasOnly([
+          'id', 'number', 'code', 'departmentId', 'departmentNameKu',
+          'departmentNameEn', 'customerName', 'customerPhone', 'userId',
+          'status', 'counter', 'createdAt', 'calledAt', 'completedAt'
+        ])
+        && data.id is string
+        && isValidId(data.id)
+        && data.id == ticketId
+        && data.number is number
+        && data.code is string
+        && data.code.size() >= 1
+        && data.code.size() <= 20
+        && data.departmentId is string
+        && data.departmentId.size() >= 1
+        && data.departmentId.size() <= 64
+        && (!('departmentNameKu' in data) || (data.departmentNameKu is string && data.departmentNameKu.size() <= 120))
+        && (!('departmentNameEn' in data) || (data.departmentNameEn is string && data.departmentNameEn.size() <= 120))
+        && (!('customerName' in data) || (data.customerName is string && data.customerName.size() <= 80))
+        && (!('customerPhone' in data) || (data.customerPhone is string && data.customerPhone.size() <= 30))
+        && data.userId is string
+        && isValidId(data.userId)
+        && data.userId == request.auth.uid
+        && data.status is string
+        && data.status in ['waiting', 'called', 'serving', 'completed', 'skipped']
+        && (!('counter' in data) || data.counter is number)
+        && data.createdAt is number
+        && (!('calledAt' in data) || data.calledAt is number)
+        && (!('completedAt' in data) || data.completedAt is number);
+    }
+
+    // User profiles (strictly owner-only, no public/global listing)
+    match /users/{userId} {
+      allow get: if isValidId(userId) && isOwner(userId);
+      allow list: if false;
+      allow create: if isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming(), userId)
+        && incoming().role == 'customer'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(userId)
+        && isOwner(userId)
+        && isValidUserProfile(incoming(), userId)
+        && incoming().id == existing().id
+        && incoming().updatedAt == request.time
+        && (
+          (
+            'createdAt' in existing()
+            && 'role' in existing()
+            && 'authProvider' in existing()
+            && incoming().diff(existing()).affectedKeys().hasOnly(['email', 'displayName', 'photoUrl', 'updatedAt'])
+            && incoming().createdAt == existing().createdAt
+            && incoming().role == existing().role
+            && incoming().authProvider == existing().authProvider
+          ) || (
+            // One-time safe backfill for legacy partial user docs created prior to strict schema
+            (!('createdAt' in existing()) || incoming().createdAt == existing().createdAt)
+            && (!('role' in existing()) ? incoming().role == 'customer' : incoming().role == existing().role)
+            && (!('authProvider' in existing()) || incoming().authProvider == existing().authProvider)
+            && incoming().diff(existing()).affectedKeys().hasOnly(['email', 'displayName', 'photoUrl', 'role', 'authProvider', 'createdAt', 'updatedAt'])
+            && (!('createdAt' in existing()) ? incoming().createdAt == request.time : true)
+          )
+        );
+      allow delete: if false;
+
+      // User favorite channels subcollection (strictly owner-only, Master Gate verified)
+      match /favorites/{channelId} {
+        allow get: if isValidId(userId)
+          && isValidChannelId(channelId)
+          && isOwner(userId);
+        allow list: if isValidId(userId)
+          && isOwner(userId)
+          && resource.data.userId == request.auth.uid;
+        allow create: if isValidId(userId)
+          && isValidChannelId(channelId)
+          && isOwner(userId)
+          && isValidUserFavorite(incoming(), userId, channelId)
+          && incoming().createdAt == request.time
+          && exists(/databases/$(database)/documents/users/$(userId));
+        allow update: if false;
+        allow delete: if isValidId(userId)
+          && isValidChannelId(channelId)
+          && isOwner(userId)
+          && existing().userId == request.auth.uid;
+      }
+
+      // User synced preferences (strictly owner-only, single 'settings' doc, Master Gate verified)
+      match /preferences/{prefId} {
+        allow get: if isValidId(userId)
+          && prefId == 'settings'
+          && isOwner(userId);
+        allow list: if false;
+        allow create: if isValidId(userId)
+          && prefId == 'settings'
+          && isOwner(userId)
+          && isValidUserSettings(incoming(), userId)
+          && incoming().updatedAt == request.time
+          && exists(/databases/$(database)/documents/users/$(userId));
+        allow update: if isValidId(userId)
+          && prefId == 'settings'
+          && isOwner(userId)
+          && isValidUserSettings(incoming(), userId)
+          && incoming().userId == existing().userId
+          && incoming().updatedAt == request.time
+          && incoming().diff(existing()).affectedKeys().hasOnly(['darkMode', 'lang', 'navBlur', 'notificationsEnabled', 'updatedAt']);
+        allow delete: if false;
+      }
+    }
+
+    // Queue & History tickets (strictly owner-scoped and email-verified)
+    match /tickets/{ticketId} {
+      allow get: if isValidId(ticketId) && isVerified() && existing().userId == request.auth.uid;
+      allow list: if isVerified() && resource.data.userId == request.auth.uid;
+      allow create: if isValidId(ticketId)
+        && isVerified()
+        && isValidQueueTicket(incoming(), ticketId);
+      allow update: if isValidId(ticketId)
+        && isVerified()
+        && isValidQueueTicket(incoming(), ticketId)
+        && existing().userId == request.auth.uid
+        && incoming().userId == existing().userId
+        && incoming().id == existing().id
+        && incoming().createdAt == existing().createdAt
+        && !(existing().status in ['completed', 'skipped'])
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'counter', 'calledAt', 'completedAt']);
+      allow delete: if isValidId(ticketId) && isVerified() && existing().userId == request.auth.uid;
+    }
+  }
+}

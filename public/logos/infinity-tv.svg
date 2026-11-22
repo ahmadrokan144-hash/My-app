@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <defs>
+    <linearGradient id="infGrad" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#311068"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="216" height="216" rx="52" fill="url(#infGrad)"/>
+  <path d="M78 106C62 106 50 118 50 132C50 146 62 158 78 158C97 158 109 138 120 124C131 110 143 90 162 90C178 90 190 102 190 116C190 130 178 142 162 142C143 142 131 122 120 108C109 94 97 106 78 106Z" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="120" y="194" text-anchor="middle" fill="#e9d5ff" font-family="Arial, sans-serif" font-weight="900" font-size="24" letter-spacing="3">INFINITY</text>
+</svg>

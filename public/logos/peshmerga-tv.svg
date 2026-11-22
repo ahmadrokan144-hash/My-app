@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Mountain range outline at top -->
+  <path d="M55 155 L115 95 L155 128 L205 78 L255 125 L295 102 L345 155" fill="none" stroke="#1e293b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M115 95 L132 135 M205 78 L188 125 M205 78 L224 122" fill="none" stroke="#475569" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Kurdistan Flag Horizontal Ribbon behind text -->
+  <rect x="24" y="156" width="352" height="32" rx="8" fill="#dc2626" />
+  <rect x="24" y="188" width="352" height="32" fill="#f8fafc" />
+  <rect x="24" y="220" width="352" height="32" rx="8" fill="#16a34a" />
+
+  <!-- Golden 21-ray Kurdish Sun behind G E -->
+  <g transform="translate(295, 204)">
+    <circle cx="0" cy="0" r="36" fill="#facc15" />
+    <path d="M0 -64 L7 -34 L-7 -34 Z
+             M22 -60 L16 -31 L3 -35 Z
+             M42 -48 L24 -24 L13 -32 Z
+             M56 -30 L29 -14 L22 -25 Z
+             M63 -9 L32 -3 L29 -16 Z
+             M63 12 L30 9 L32 -4 Z
+             M55 32 L24 18 L31 7 Z
+             M40 49 L16 26 L26 18 Z
+             M20 60 L6 31 L18 27 Z
+             M-2 64 L-6 32 L7 32 Z
+             M-24 59 L-17 29 L-5 33 Z
+             M-43 47 L-25 22 L-15 30 Z
+             M-57 29 L-30 12 L-23 23 Z
+             M-63 8 L-32 1 L-29 14 Z
+             M-62 -14 L-30 -10 L-32 3 Z
+             M-54 -34 L-24 -19 L-31 -8 Z
+             M-39 -50 L-15 -26 L-25 -18 Z
+             M-19 -61 L-5 -31 L-17 -27 Z" fill="#eab308" />
+  </g>
+
+  <!-- Bold PÊŞMERGE Typography -->
+  <text x="200" y="227" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="52" letter-spacing="1" fill="#ffffff" stroke="#0f172a" stroke-width="6" paint-order="stroke fill">PÊŞMERGE</text>
+</svg>

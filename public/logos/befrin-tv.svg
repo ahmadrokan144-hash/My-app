@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- 5-petal colorful pinwheel flower on left/top -->
+  <g transform="translate(135, 165)">
+    <!-- Top-right crimson/magenta petal -->
+    <path d="M0 -8 C10 -55 48 -82 32 -115 C5 -88 -18 -52 0 -8 Z" fill="#e11d48" />
+    <!-- Top-left orange petal -->
+    <path d="M-6 -4 C-45 -38 -85 -35 -102 -8 C-68 2 -35 -12 -6 -4 Z" fill="#f97316" />
+    <!-- Bottom-left golden yellow petal -->
+    <path d="M-8 4 C-52 12 -82 42 -68 78 C-40 55 -22 25 -8 4 Z" fill="#f59e0b" />
+    <!-- Bottom-right amber/coral petal -->
+    <path d="M-2 8 C-12 48 5 85 32 102 C28 65 14 32 -2 8 Z" fill="#ea580c" />
+    <!-- Right magenta swoosh petal -->
+    <path d="M4 2 C38 22 65 8 78 -18 C48 -22 25 -10 4 2 Z" fill="#be123c" />
+    <!-- Center white/crimson ring -->
+    <circle cx="-2" cy="0" r="14" fill="#ffffff" stroke="#be123c" stroke-width="6" />
+  </g>
+
+  <!-- Red HD badge -->
+  <rect x="225" y="135" width="96" height="46" rx="8" fill="#ffffff" stroke="#be123c" stroke-width="5" />
+  <text x="273" y="168" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="30" fill="#be123c">HD</text>
+
+  <!-- BEFRIN title -->
+  <text x="245" y="242" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-weight="900" font-size="52" letter-spacing="2" fill="#9f1239">BEFRIN</text>
+</svg>

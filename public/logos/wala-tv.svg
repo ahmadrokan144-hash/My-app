@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#881337" />
+    </linearGradient>
+    <linearGradient id="darkStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  <!-- Small ٧ (V) diacritic at top of والا -->
+  <path d="M162 56 L176 92 L190 56 L181 56 L176 72 L171 56 Z" fill="url(#darkStroke)" />
+
+  <!-- First vertical Alif/Lam stem on right of والا -->
+  <path d="M242 52 C248 52 252 57 252 64 L252 215 C252 224 246 230 238 230 C231 230 227 224 227 215 L227 72 L214 82 L214 64 L236 52 Z" fill="url(#darkStroke)" />
+
+  <!-- Lam-Alif (لا) intersecting calligraphy -->
+  <path d="M196 52 L212 68 L212 198 C212 232 186 254 146 254 C126 254 112 246 106 236 C124 238 148 232 164 218 C178 205 186 188 186 164 L186 64 Z" fill="url(#darkStroke)" />
+  <path d="M110 92 L134 78 L192 174 C198 184 196 198 186 206 L168 192 L110 92 Z" fill="url(#darkStroke)" />
+  <!-- Crimson base swoosh of لا -->
+  <path d="M104 234 C118 222 142 220 166 226 C182 230 190 242 176 252 C156 264 120 260 104 234 Z" fill="url(#crimsonGrad)" />
+
+  <!-- Waw (و) on the right with crimson tail swoosh -->
+  <path d="M308 135 C332 135 348 154 348 182 C348 216 326 252 292 266 C272 274 252 270 240 258 C258 260 280 252 296 236 C310 222 318 204 318 188 C318 196 306 202 294 202 C274 202 260 188 260 168 C260 148 278 135 308 135 Z M298 156 C288 156 282 162 282 170 C282 178 288 183 298 183 C308 183 315 178 315 170 C315 162 308 156 298 156 Z" fill="url(#darkStroke)" />
+  <path d="M240 258 C258 256 282 246 300 228 C312 216 324 226 314 244 C300 268 266 278 240 258 Z" fill="url(#crimsonGrad)" />
+
+  <!-- CHAMCHAMAL subtitle -->
+  <text x="200" y="318" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="25" letter-spacing="4" fill="#334155">CHAMCHAMAL</text>
+</svg>

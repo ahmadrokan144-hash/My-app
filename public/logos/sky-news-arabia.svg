@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220">
+  <defs>
+    <linearGradient id="skyRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D71920" />
+      <stop offset="100%" stop-color="#A80B12" />
+    </linearGradient>
+    <linearGradient id="skyBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0C2340" />
+      <stop offset="100%" stop-color="#163A66" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" rx="28" fill="#ffffff" />
+  <rect x="24" y="42" width="165" height="68" rx="10" fill="url(#skyBlue)" />
+  <text x="106" y="90" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="48" fill="#ffffff" text-anchor="middle" letter-spacing="1">sky</text>
+  <rect x="195" y="42" width="181" height="68" rx="10" fill="url(#skyRed)" />
+  <text x="285" y="88" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="38" fill="#ffffff" text-anchor="middle" letter-spacing="2">NEWS</text>
+  <rect x="24" y="122" width="352" height="58" rx="10" fill="url(#skyRed)" />
+  <text x="200" y="162" font-family="Tahoma, Arial, sans-serif" font-weight="700" font-size="34" fill="#ffffff" text-anchor="middle">سكاي نيوز عربية</text>
+</svg>

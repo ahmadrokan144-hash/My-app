@@ -1,0 +1,1444 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Rabar_021";
+  src:
+    url("/fonts/Rabar_021.woff") format("woff"),
+    url("/fonts/Rabar_021.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200D;
+}
+
+@font-face {
+  font-family: "NRT-Bold";
+  src: url("/fonts/NRT-Bd.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NRT-Reg";
+  src: url("/fonts/NRT-Reg.ttf") format("truetype");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Rabar_021", "Inter", "Vazirmatn", "NRT-Bold", "NRT-Reg", "Noto Sans Arabic", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Rabar_021", "Noto Naskh Arabic", "Cairo", serif;
+  
+  --color-brand-light: #e3f2fd;
+  --color-brand-primary: #3b82f6;
+  --color-brand-secondary: #1e3a8a;
+
+/* Custom styles and glassmorphism */
+
+}
+
+.nrt-font {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", sans-serif !important;
+}
+
+.nrt-subtitle {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", sans-serif !important;
+  font-weight: 800;
+  letter-spacing: 0px;
+  unicode-bidi: plaintext;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+video::cue {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", sans-serif !important;
+  font-weight: 800;
+  background-color: rgba(0, 0, 0, 0.78);
+  color: #ffffff;
+}
+@layer utilities {
+  .glass {
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  /* Right to Left Scrollbar utilities */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.35);
+    border-radius: 9999px;
+  }
+}
+
+html {
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", var(--font-sans), Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-body, #edf2f7);
+  color: var(--text-body, #1e293b);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
+}
+
+button, input, textarea, select {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", var(--font-sans), sans-serif;
+}
+
+img, button, a, nav, header, .glass-card, .channel-glass-card {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button, a, input, select, textarea, #tasbih-click-zone * {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input, textarea, select {
+  font-size: 16px !important;
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+#tasbih-click-zone {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+/* دروستکردنی کڵاسێکی تایبەت بۆ تێکستە قەڵەو و جوانەکان */
+
+}
+.kurdish-bold {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", sans-serif;
+  font-weight: 700; /* قەڵەوی ستاندارد */
+  font-size: 1.2rem; /* قەبارەی تێکستەکە کەمێک گەورەتر */
+  letter-spacing: 0px; /* فۆنتی کوردی پێویستی بە مەودای نێوان پیت نییە */
+  line-height: 1.6; /* مەودای نێوان دێڕەکان بۆ ئەوەی پیتەکان نەلکێن بە یەکەوە */
+
+/* ئەگەر ویستت زۆر قەڵەو بێت (Super Bold) */
+
+}
+.kurdish-heavy {
+  font-family: "Rabar_021", "Inter", "Vazirmatn", sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+
+/* Animations and decorative classes */
+
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 3s infinite ease-in-out;
+
+/* Geometric balance dot overlay pattern */
+
+}
+.geometric-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: radial-gradient(#1e3a8a 1px, transparent 1px);
+  background-size: 20px 20px;
+
+}
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    
+    /* 🌟 باکگراوندەکە بە تەواوی کرا بە سپی خاوێن */
+    background: #f8fafc !important; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+
+/* سندوقی ناوەڕۆکەکە بۆ ئەوەی لەگەڵ پشتخانە سپییەکە بگونجێت */
+
+}
+.splash-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* شووشەیەکی تەڵخی تاریک یان کەمێک خۆڵەمێشی بۆ سەر باکگراوندە سپییەکە */
+    background: rgba(15, 23, 42, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    padding: 50px 30px;
+    border-radius: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    max-width: 340px;
+    width: 85%;
+
+}
+.splash-logo {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    
+    /* سێبەرێکی کەم بۆ سەرخستنی لۆگۆکە لەسەر شووشەکە */
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15)); 
+
+/* 🌟 تێکستی سەرەکی کرا بە ڕەشی تۆخ */
+
+}
+.splash-title {
+    color: #0f172a !important;
+    font-size: 2.3rem;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+
+/* 🌟 تێکستی دووەم کرا بە خۆڵەمێشی تۆخ */
+
+}
+.splash-subtitle {
+    color: #475569 !important;
+    font-size: 0.95rem;
+    margin: 0 0 35px 0;
+
+/* خاڵەکانی بارکردن (Loading) لەجیاتی ئاڵتوونی، کران بە شینی تۆخ بۆ ئەوەی زیاتر دیار بن */
+
+}
+.loading-dots {
+    display: flex;
+    gap: 8px;
+
+}
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background-color: #1e3a8a;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: pulse 0.6s infinite alternate;
+
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+
+/* بۆ ئەوەی لەسەر شاشەی مۆبایلیش قەبارەکەی هاوسەنگ بمێنێتەوە */
+
+}
+@media (max-width: 480px) {
+    .splash-logo {
+        width: 170px;
+
+/* شێوازی تایبەت بۆ کۆنتێنەری بەروارەکان */
+
+}
+}
+.date-container {
+    font-size: 0.75rem !important; /* قەبارەی گونجاو بۆ ناو مێنۆ و باکگراوندەکان */
+    line-height: 1.2 !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+#hijri-date {
+    color: #fef08a; /* زەردێکی کاڵی زۆر جوان */
+
+/* کۆنتێنەری دوگمە سەرەکییەکان */
+
+}
+.main-actions-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+/* شێوازی دوگمەکان */
+
+}
+.action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: 1.25rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.05);
+
+}
+.action-btn .icon {
+    font-size: 1.35rem;
+    transition: transform 0.3s ease;
+
+}
+.action-btn:hover .icon {
+    transform: scale(1.2) rotate(10deg);
+
+}
+.tasbih-btn {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: #ffffff;
+
+}
+.tasbih-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    transform: translateY(-2px);
+
+}
+.qibla-btn {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+
+}
+.qibla-btn:hover {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+    transform: translateY(-2px);
+
+/* مۆداڵی قیبلە */
+
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+}
+.modal.open {
+    opacity: 1;
+    pointer-events: auto;
+
+}
+.modal-content {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    padding: 2.25rem;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+}
+.modal.open .modal-content {
+    transform: scale(1);
+
+}
+.close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-size: 1.75rem;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    line-height: 1;
+
+}
+.close-btn:hover {
+    color: #f1f5f9;
+    transform: scale(1.1);
+
+}
+.compass-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 2rem auto 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 9999px;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    padding: 10px;
+
+}
+.compass-pointer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 110px;
+    background: linear-gradient(to bottom, #ef4444 50%, transparent 50%);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    border-radius: 999px;
+    pointer-events: none;
+
+}
+.compass-pointer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid #ef4444;
+
+}
+#compass-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.1s ease-out;
+    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.3));
+    user-select: none;
+    -webkit-user-drag: none;
+
+}
+.kaaba-indicator {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(234, 179, 8, 0.25);
+    border: 1.5px solid #eab308;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
+
+/* 🌟 دۆخی ڕووناک و تاریک: CSS Variables 🌟 */
+}
+:root {
+  --text-sub: #475569;
+  --bg-body: #f1f5f9;
+  --text-body: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.05);
+  --header-text: #1e3a8a;
+
+}
+.dark {
+  --text-sub: #94a3b8;
+  --bg-body: #0b0f19;
+  --text-body: #f1f5f9;
+  --card-bg: rgba(15, 23, 42, 0.9);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --header-text: #38bdf8;
+
+/* Dynamic ambient theme background adaptation */
+
+}
+.liquid-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -10;
+  background: linear-gradient(135deg, #edf2f7 0%, #f7fafc 100%);
+  transition: background 0.3s ease;
+
+}
+.dark .liquid-wave {
+  background: linear-gradient(135deg, #090d16 0%, #0b0f19 100%);
+
+/* Dark mode overrides for common components */
+
+}
+.dark .bg-white\/90 {
+  background-color: var(--card-bg) !important;
+
+}
+.dark .border-white\/85,
+.dark .border-white\/80 {
+  border-color: var(--card-border) !important;
+
+}
+.dark .text-\[\#1e3a8a\] {
+  color: var(--header-text) !important;
+
+}
+.dark .text-slate-700,
+.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+
+}
+.dark .text-slate-500,
+.dark .text-slate-600 {
+  color: #94a3b8 !important;
+
+}
+.dark .bg-slate-50 {
+  background-color: rgba(30, 41, 59, 0.5) !important;
+
+}
+.dark .border-slate-100 {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+
+}
+.dark .bg-white {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+
+}
+.dark .text-slate-900 {
+  color: #f8fafc !important;
+
+}
+.dark .text-blue-900 {
+  color: #38bdf8 !important;
+
+}
+.dark .bg-blue-50 {
+  background-color: rgba(56, 189, 248, 0.1) !important;
+  color: #38bdf8 !important;
+
+}
+.dark .bg-blue-100\/60 {
+  background-color: rgba(56, 189, 248, 0.15) !important;
+
+}
+.dark .border-blue-200\/20 {
+  border-color: rgba(56, 189, 248, 0.3) !important;
+
+}
+.dark .text-slate-400 {
+  color: #64748b !important;
+
+}
+.dark input[type="text"],
+.dark input[type="search"],
+.dark select {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+
+/* ⚙️ ڕێکخستنەکانی ئەپ (Settings Styles) ⚙️ */
+
+}
+.settings-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+}
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.06);
+  margin: 1.25rem 0;
+
+}
+.dark .divider {
+  background-color: rgba(255, 255, 255, 0.06);
+
+}
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+}
+.settings-info {
+  display: flex;
+  flex-direction: column;
+
+}
+.settings-info span {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-body);
+
+/* 🎚️ Switch Toggle Style 🎚️ */
+
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .3s;
+  border-radius: 34px;
+
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+
+}
+input:checked + .slider {
+  background-color: #3b82f6;
+
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+
+}
+.slider.round {
+  border-radius: 34px;
+
+}
+.slider.round:before {
+  border-radius: 50%;
+
+/* ستایلی گشتی ئایکۆنە نوێیەکان */
+
+}
+.nav-item i, .settings-row i, h3 i {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2; /* ئەستووری لێواری ئایکۆنەکە */
+    transition: 0.3s;
+
+/* 🌟 کڵاسی داینامیکی بۆ دۆخی ڕووناک (Light Mode) */
+
+}
+.light-theme {
+    /* باکگراوندەکە دەبێتە سپییەکی زۆر خاوێن بۆ ئەوەی ناوی سوورەتە ڕەشەکان بە جوانی دەرکەون */
+    --bg-gradient: linear-gradient(135deg, #edf2f7 0%, #f7fafc 100%) !important;
+    --card-bg: #ffffff !important;
+    --text-main: #0f172a !important; /* تێکستەکان دەبنە ڕەشی مۆدێرن */
+    --text-sub: #475569 !important;
+
+/* چاککردنی ڕەنگی شریتی خوارەوە لە دۆخی ڕووناکدا */
+
+}
+.light-theme .bottom-nav {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+
+}
+.light-theme .nav-item {
+    color: #475569 !important;
+
+}
+.light-theme .nav-item.active {
+    color: #1e3a8a !important; /* ڕەنگی تابی چالاک لە دۆخی سپیدا دەبێتە شینی تۆخ */
+
+/* 💖 ستایلی پشتیوانیکردنی پڕۆژەکە (Donation Card Styles) 💖 */
+
+}
+.donation-card {
+  margin-top: 1rem;
+
+}
+.donation-header h4 {
+  font-size: 0.95rem;
+  color: var(--text-body);
+
+}
+.donation-header p {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+
+}
+.donation-methods {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+
+}
+.method-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px dashed rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+
+}
+.dark .method-item {
+  border-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.02);
+
+}
+.method-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+
+}
+.dark .method-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+
+}
+.donation-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+
+}
+.dark .donation-details {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.04);
+
+}
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+}
+.copy-btn:hover {
+  background-color: #2563eb;
+
+}
+.copy-btn i {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.5;
+
+/* 🌟 لاپەڕەی دەربارەی ئەپ و گەشەپێدەر (About Card Styles) 🌟 */
+
+}
+.about-card {
+  margin-top: 1.5rem;
+
+}
+.about-card h2 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+}
+.about-card p {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+
+}
+.about-card strong {
+  font-weight: 700;
+
+/* 🌟 ستایلی سندوقی سەرەکی بانگ (Prayer Times Widget Styles) 🌟 */
+
+}
+.prayer-card {
+  padding: 18px;
+  margin-bottom: 20px;
+
+}
+.prayer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+}
+.prayer-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+/* 🌟 چاککردنی سندوقی دیاریکردنی شار (Select) بۆ ئەوەی ناوی شارەکە دیار بێت */
+
+}
+#city-select {
+  color: var(--text-body, #1e293b) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 6px 28px 6px 12px;
+  border-radius: 10px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+
+/* دڵنیابوونەوە لەوەی ئۆپشنەکانی ناو درۆپداونەکەش ڕەش بن تا لەسەر سپی بخوێندرێنەوە */
+
+}
+#city-select option {
+  background-color: #1e293b !important;
+  color: var(--text-body, #1e293b) !important;
+
+/* تۆڕی کاتەکان */
+
+}
+.prayer-times-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+}
+.prayer-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+/* 🌟 چاککردنی ڕەنگی دەق و کاتەکان لە دۆخی تاریکدا */
+
+}
+.prayer-item span {
+  color: #cbd5e1 !important;
+  font-size: 0.85rem !important;
+  opacity: 0.9 !important;
+
+}
+.prayer-item strong,
+#time-fajr, #time-sunrise, #time-dhuhr, #time-asr, #time-maghrib, #time-isha {
+  color: var(--text-body, #1e293b) !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  display: block !important;
+  opacity: 1 !important;
+
+/* 🌟 ئەگەر چوویتە دۆخی ڕووناک (Light Theme) با خۆکارانە ڕەش ببنەوە */
+
+}
+.light-theme .prayer-item {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+}
+.light-theme .prayer-item strong,
+.light-theme #time-fajr, .light-theme #time-sunrise, .light-theme #time-dhuhr,
+.light-theme #time-asr, .light-theme #time-maghrib, .light-theme #time-isha {
+  color: #0f172a !important; /* دەبێتە ڕەشی تۆخ */
+
+}
+.light-theme .prayer-item span {
+  color: #475569 !important;
+
+}
+.light-theme #city-select {
+  color: #0f172a !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.light-theme #city-select option {
+  background-color: var(--text-body, #1e293b) !important;
+  color: #0f172a !important;
+
+/* تیشک خستنە سەر بانگی داهاتوو (Active) */
+
+}
+.prayer-item.next-prayer {
+  border: 1px solid var(--accent) !important;
+  background: rgba(30, 58, 138, 0.2) !important;
+
+/* 🌙 چاککردنی کارتەکانی سوورەت تەنها لە کاتی مۆدی تاریکدا (Dark Mode) */
+
+}
+body.dark-mode .surahs-list .card,
+body.dark-mode [id^="surah-"],
+.dark-mode .surahs-list .card,
+.dark .surahs-list .card,
+.dark [id^="surah-card-"],
+.dark #surah-grid-list > div,
+.dark-mode [id^="surah-card-"],
+.dark-mode #surah-grid-list > div {
+    /* گۆڕینی باکگراوە سپییەکە بۆ شینی تاریک یان خۆڵەمێشی تاریکی ئەپەکەت */
+    background: #1e293b !important; 
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+
+/* سپی کردنی ناوی سوورەتەکان بە کوردی لە مۆدی تاریکدا */
+}
+body.dark-mode .surahs-list h4,
+body.dark-mode .surahs-list h3,
+body.dark-mode .surahs-list .card-title,
+body.dark-mode .surahs-list [style*="color: rgb(15"],
+.dark .surahs-list h4,
+.dark .surahs-list h3,
+.dark .surahs-list .card-title,
+.dark [id^="surah-card-"] h3,
+.dark-mode [id^="surah-card-"] h3,
+.dark #surah-grid-list h3,
+.dark-mode #surah-grid-list h3 {
+    color: var(--text-body, #1e293b) !important;
+
+/* ڕێکخستنی ناوی ئینگلیزی، ژمارەکان و دەقە لاوەکییەکان بۆ ئەوەی گەش و دیار بن */
+}
+body.dark-mode .surahs-list p,
+body.dark-mode .surahs-list .translation-text,
+body.dark-mode .surahs-list .surah-info,
+body.dark-mode .surahs-list span:not(.badge),
+.dark .surahs-list p,
+.dark .surahs-list .translation-text,
+.dark .surahs-list .surah-info,
+.dark .surahs-list span:not(.badge),
+.dark [id^="surah-card-"] span:not(.badge),
+.dark-mode [id^="surah-card-"] span:not(.badge),
+.dark #surah-grid-list span:not(.badge),
+.dark-mode #surah-grid-list span:not(.badge) {
+    color: #cbd5e1 !important;
+    opacity: 1 !important;
+
+/* دڵنیابوونەوە لەوەی ناوی عەرەبی سوورەتەکان (وەک الفاتحة) بە سپی یان شینی زۆر گەش دەمێنێتەوە */
+}
+body.dark-mode .surahs-list .arabic-text,
+.dark .surahs-list .arabic-text,
+.dark [id^="surah-card-"] .font-arabic,
+.dark-mode [id^="surah-card-"] .font-arabic,
+.dark #surah-grid-list .font-arabic,
+.dark-mode #surah-grid-list .font-arabic {
+    color: #3b82f6 !important; /* یان #ffffff ئەگەر دەتەوێت سپی بێت */
+
+/* ☀️ تەنها لە مۆدی ڕووناکدا (Light Mode) دەقی ناو کتێبەکە دەکاتە ڕەش */
+/* Removed to allow white text in both modes */
+
+/* ☀️ ⏬ لێرەوە تەنها لە مۆدی ڕووناکدا دەقەکان دەکاتە ڕەشی خاوێن ⏬ */
+}
+body:not(.dark-mode) #tab-ai .ai-title,
+body:not(.dark) #tab-ai .ai-title,
+html:not(.dark) #tab-ai .ai-title { 
+    color: #000000 !important; 
+}
+body:not(.dark-mode) #tab-ai .ai-desc,
+body:not(.dark) #tab-ai .ai-desc,
+html:not(.dark) #tab-ai .ai-desc { 
+    color: #000000 !important; 
+}
+body:not(.dark-mode) #tab-ai .ai-card,
+body:not(.dark) #tab-ai .ai-card,
+html:not(.dark) #tab-ai .ai-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+body:not(.dark-mode) #tab-ai #ai-chat-box,
+body:not(.dark) #tab-ai #ai-chat-box,
+html:not(.dark) #tab-ai #ai-chat-box {
+    background: rgba(0, 0, 0, 0.03) !important;
+/* ڕەشکردنی نامەی بەخێرهاتنی سەرەتایی لە مۆدی ڕووناکدا */
+}
+body:not(.dark-mode) #tab-ai #ai-welcome-msg,
+body:not(.dark) #tab-ai #ai-welcome-msg,
+html:not(.dark) #tab-ai #ai-welcome-msg {
+    background: #e2e8f0 !important;
+    color: #000000 !important;
+/* ڕەشکردنی دەق و پاشبنەمای دوگمەکان لە مۆدی ڕووناکدا */
+}
+body:not(.dark-mode) .ai-btn,
+body:not(.dark) .ai-btn,
+html:not(.dark) .ai-btn {
+    background: #f1f5f9 !important;
+    color: #000000 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+body:not(.dark-mode) .ai-btn:hover,
+body:not(.dark) .ai-btn:hover,
+html:not(.dark) .ai-btn:hover {
+    background: #e2e8f0 !important;
+/* ڕەشکردنی نامە نوێیەکانی ناو چاتەکە تەنها لە مۆدی ڕووناکدا */
+}
+body:not(.dark-mode) .ai-user-msg,
+body:not(.dark) .ai-user-msg,
+html:not(.dark) .ai-user-msg {
+    background: #cbd5e1 !important;
+    color: #000000 !important;
+}
+body:not(.dark-mode) .ai-bot-msg,
+body:not(.dark) .ai-bot-msg,
+html:not(.dark) .ai-bot-msg {
+    background: #dbeafe !important;
+    color: #000000 !important;
+
+/* ==========================================
+   🔄 گەڕاندنەوەی تەواوی ئەپەکە بۆ باری ئاسایی (Reset)
+   ========================================== */
+
+/* گەڕاندنەوەی پادینگی هەموو لاپەڕەکان بۆ باری ستاندارد */
+}
+.fullscreen-splash-overlay {
+    position: fixed !important;
+    top: calc(-1 * env(safe-area-inset-top, 0px)) !important;
+    bottom: calc(-1 * env(safe-area-inset-bottom, 0px)) !important;
+    left: calc(-1 * env(safe-area-inset-left, 0px)) !important;
+    right: calc(-1 * env(safe-area-inset-right, 0px)) !important;
+    width: 100vw !important;
+    height: calc(100vh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px)) !important;
+    min-height: 100lvh !important;
+    background-color: #ffffff !important;
+    z-index: 999999 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.dark .fullscreen-splash-overlay,
+.fullscreen-splash-overlay.splash-dark {
+    background-color: #0b0f19 !important;
+}
+
+.fullscreen-splash-video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+    background-color: #ffffff !important;
+}
+
+.dark .fullscreen-splash-video {
+    background-color: #0b0f19 !important;
+}
+
+.tab-view, 
+#tab-home, 
+#tab-books, 
+#tab-dhikr, 
+#tab-settings, 
+#tab-ai,
+#tab-surahs,
+#surah-list-container,
+#tasbih-container,
+#settings-view-container,
+#quran-reader-container,
+div[id^="tab-"] {
+    padding-top: 6px !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 110px) !important;
+    margin-top: 0px !important;
+}
+
+.tab-view .tab-view {
+    padding-top: 0px !important;
+}
+h2, 
+.title, 
+.header,
+.surah-header-title,
+#tab-ai .ai-title {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+
+/* پاککردنەوەی کارتەکەی بەشی سەرەکی */
+}
+#tab-home .home-header,
+#tab-home > div:first-child {
+    margin-top: 0px !important;
+
+/* 🧭 ڕێکخستنەوە و بەرزکردنەوەی هێماکانی شریتی خوارەوە */
+
+}
+#floating-navigation-bar {
+    position: fixed !important;
+    left: 1.25rem !important;
+    right: 1.25rem !important;
+    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    height: 72px !important;
+    border-radius: 9999px !important; /* شریتی خوارەوە بە تەواوی قەوس و لووس کراوە */
+    overflow: hidden !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 0 12px !important;
+    padding-bottom: 0px !important;
+    touch-action: manipulation;
+}
+
+#floating-navigation-bar.nav-shrunk {
+    transform: scale(0.85) translateY(8px) !important;
+    opacity: 0.90 !important;
+    backdrop-filter: blur(20px) saturate(200%) !important;
+    box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.35) !important;
+}
+
+#floating-navigation-bar.nav-shrunk button svg,
+#floating-navigation-bar.nav-shrunk a svg,
+#floating-navigation-bar.nav-shrunk .nav-item svg {
+    transform: scale(0.92) !important;
+    transition: transform 0.3s ease !important;
+}
+
+#floating-navigation-bar.nav-shrunk button span,
+#floating-navigation-bar.nav-shrunk a span,
+#floating-navigation-bar.nav-shrunk .nav-item span {
+    font-size: 9px !important;
+    transition: font-size 0.3s ease !important;
+}
+#floating-navigation-bar button,
+#floating-navigation-bar a,
+.nav-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important; /* هێنانە ناوەڕاستی ستوونی */
+    height: 100% !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    margin-top: 0px !important; 
+
+}
+#floating-navigation-bar button svg,
+#floating-navigation-bar a svg,
+.nav-item svg {
+    width: 24px !important;
+    height: 24px !important;
+    margin-bottom: 4px !important; /* بۆشایی گونجاو لە نێوان هێما و دەقەکە */
+    display: block !important;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   🔮 بەهێزکردنی ستایلی لیکیود گڵاس (Ultra Glassmorphism)
+   ========================================== */
+
+/* ١. دروستکردنی پاشبنەمای داینامیکی لەگەڵ بازنە ڕەنگاوڕەنگەکان */
+
+}
+body {
+    background-color: var(--bg-body, #E3F2FD) !important;
+    color: var(--text-body, #1e293b) !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.liquid-wave {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #edf2f7 0%, #f7fafc 100%) !important;
+}
+
+.dark .liquid-wave {
+    background: linear-gradient(135deg, #090d16 0%, #0b0f19 100%) !important;
+}
+
+/* بازنەی شلی یەکەم (شین) لە پشتەوە */
+.liquid-wave::before {
+    content: "";
+    position: fixed;
+    top: -10%;
+    left: -20%;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.42) 0%, rgba(59, 130, 246, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatOrb 8s infinite alternate ease-in-out;
+}
+
+/* بازنەی شلی دووەم (سەوز) لە پشتەوە */
+.liquid-wave::after {
+    content: "";
+    position: fixed;
+    bottom: 10%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.34) 0%, rgba(16, 185, 129, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatOrb 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes floatOrb {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(40px, 60px, 0) scale(1.2); }
+}
+
+.glass:hover, .glass-nav:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+.glass:active, .glass-nav:active {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Restored Glass Cards - Light and Dark Adaptive */
+.glass-card {
+    background-color: rgba(255, 255, 255, var(--glass-opacity-light, 0.72));
+    backdrop-filter: blur(var(--glass-blur, 20px)) saturate(var(--glass-saturate, 180%));
+    -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(var(--glass-saturate, 180%));
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.22s ease;
+}
+
+.dark .glass-card {
+    background-color: rgba(30, 41, 59, var(--glass-opacity-dark, 0.68));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Channel Grid Card - Translucent glass that lets the blue/green background shine through without WebKit fade-in backdrop-filter snapping */
+.channel-glass-card {
+    background-color: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.22s ease;
+}
+
+.dark .channel-glass-card {
+    background-color: rgba(30, 41, 59, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.channel-card-title {
+    font-family: "Rabar_021", "Inter", "Vazirmatn", sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0px !important;
+}
+
+@media (min-width: 640px) {
+    .channel-card-title {
+        font-size: 13px !important;
+    }
+}
+
+/* Clean Classic Frosted Glass Navigation Bars (Top & Bottom) */
+.frosted-nav-bar {
+    background-color: rgba(255, 255, 255, var(--nav-bg-alpha-light, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.78) !important;
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08) !important;
+    backdrop-filter: blur(var(--nav-blur, 18px)) saturate(var(--nav-sat, 180%));
+    -webkit-backdrop-filter: blur(var(--nav-blur, 18px)) saturate(var(--nav-sat, 180%));
+    transform: translateZ(0);
+    will-change: transform, backdrop-filter;
+}
+
+.dark .frosted-nav-bar {
+    background-color: rgba(15, 23, 42, var(--nav-bg-alpha-dark, 0.78));
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.38) !important;
+}
+
+.app-top-header {
+    border-bottom-left-radius: 28px !important;
+    border-bottom-right-radius: 28px !important;
+}
+
+@media all and (display-mode: standalone), all and (display-mode: fullscreen) {
+    .app-top-header {
+        padding-top: max(calc(env(safe-area-inset-top, 48px) + 18px), 64px) !important;
+    }
+}
+
+.glass-nav {
+    background-color: rgba(255, 255, 255, calc(var(--glass-opacity-light, 0.7) - 0.3));
+    backdrop-filter: blur(calc(var(--glass-blur, 25px) - 9px));
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur, 25px) - 9px));
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-nav {
+    background-color: rgba(15, 23, 42, calc(var(--glass-opacity-dark, 0.65) - 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Hide horizontal scrollbar on Netflix-style category pills */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Native iOS directional page slide transitions (zero blur) */
+@keyframes nativePageSlideFromLeft {
+    0% {
+        opacity: 0.9;
+        transform: translate3d(-28%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes nativePageSlideFromRight {
+    0% {
+        opacity: 0.9;
+        transform: translate3d(28%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.native-tab-panel[data-active="true"][data-slide="left"] {
+    animation: nativePageSlideFromLeft 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.native-tab-panel[data-active="true"][data-slide="right"] {
+    animation: nativePageSlideFromRight 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth, natural button transitions with springy native touch response */
+button, a, .nav-item {
+    transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.12s ease, background-color 0.15s ease;
+}
+
+button:active:not(:disabled), a:active, .nav-item:active {
+    opacity: 0.88;
+    transform: scale(0.965);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Completely suppress native mobile browser/iOS start-playback button while series video is preparing */
+video.series-video-loading::-webkit-media-controls,
+video.series-video-loading::-webkit-media-controls-enclosure,
+video.series-video-loading::-webkit-media-controls-panel,
+video.series-video-loading::-webkit-media-controls-overlay-play-button,
+video.series-video-loading::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    -webkit-appearance: none !important;
+}
